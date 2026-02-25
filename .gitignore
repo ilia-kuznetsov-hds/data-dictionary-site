@@ -212,3 +212,5 @@ data/
 content/
 
 site/node_modules/
+
+*.pdf

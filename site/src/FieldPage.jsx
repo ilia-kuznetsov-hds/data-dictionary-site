@@ -1,27 +1,43 @@
+﻿import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import ReportPanel from './ReportPanel';
 
-export default function FieldPage({ fields }) {
+export default function FieldPage({ fields, reportLinks }) {
   const { fieldId } = useParams();
   const field = fields[fieldId];
+  const linkedPage = reportLinks?.[fieldId] ?? null;
+  const [panelPage, setPanelPage] = useState(null);
+
+  useEffect(() => {
+    setPanelPage(null);
+  }, [fieldId]);
 
   if (!field) {
     return (
       <div className="field-page">
         <h1>Field not found</h1>
         <p>No field with ID <code>{fieldId}</code> exists.</p>
-        <Link to="/">← Back to home</Link>
+        <Link to="/">â† Back to home</Link>
       </div>
     );
-  }
-
-  function copyFieldId() {
-    navigator.clipboard.writeText(field.field_id);
   }
 
   return (
     <div className="field-page">
       {/* Title */}
-      <h1>{field.label}</h1>
+      <div className="field-page-title-row">
+        <h1>{field.label}</h1>
+        {linkedPage !== null && (
+          <button
+            className="report-badge"
+            onClick={() => setPanelPage(linkedPage)}
+            title="View in 2023 Annual Report"
+            type="button"
+          >
+            2023 Report
+          </button>
+        )}
+      </div>
 
       {/* Metadata summary table */}
       <table className="metadata-table">
@@ -29,7 +45,7 @@ export default function FieldPage({ fields }) {
           {field.anznn_label && (
             <tr><td className="meta-key">ANZNN Label</td><td>{field.anznn_label}</td></tr>
           )}
-          {field.metadata_type && (
+          {field.metadata_type && field.metadata_type !== 'DATA ELEMENT' && (
             <tr><td className="meta-key">Type</td><td>{field.metadata_type}</td></tr>
           )}
           {field.data_type && (
@@ -51,15 +67,6 @@ export default function FieldPage({ fields }) {
           <tr>
             <td className="meta-key">Source</td>
             <td>Page {field.source_page}</td>
-          </tr>
-          <tr>
-            <td className="meta-key">Field ID</td>
-            <td>
-              <code>{field.field_id}</code>
-              <button className="copy-btn" onClick={copyFieldId} title="Copy field ID">
-                📋
-              </button>
-            </td>
           </tr>
         </tbody>
       </table>
@@ -91,7 +98,7 @@ export default function FieldPage({ fields }) {
             <tbody>
               {field.data_domain.map((entry, i) => (
                 <tr key={i}>
-                  <td className="domain-code">{entry.code ?? '—'}</td>
+                  <td className="domain-code">{entry.code ?? 'â€”'}</td>
                   <td>{entry.label}</td>
                 </tr>
               ))}
@@ -137,6 +144,9 @@ export default function FieldPage({ fields }) {
           <p>{field.comments}</p>
         </section>
       )}
+
+      <ReportPanel page={panelPage} onClose={() => setPanelPage(null)} />
     </div>
   );
 }
+
