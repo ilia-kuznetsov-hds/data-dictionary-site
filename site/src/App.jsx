@@ -7,16 +7,19 @@ import SectionGalleryPage from './SectionGalleryPage';
 import GlobalHeader from './GlobalHeader';
 import WorkInProgressPage from './WorkInProgressPage';
 import ReportsPage from './ReportsPage';
+import CohortBuilderPage from './CohortBuilderPage';
 import fieldsData from '../../data/fields.json';
 import sectionsData from '../../data/sections.json';
 
 export default function App() {
   const [reportLinks, setReportLinks] = useState({});
   const location = useLocation();
+  const isCohortBuilder = location.pathname.startsWith('/cohort-builder');
   const showDictionarySidebar =
-    location.pathname === '/' ||
+    !isCohortBuilder &&
+    (location.pathname === '/' ||
     location.pathname.startsWith('/fields/') ||
-    location.pathname.startsWith('/sections/');
+    location.pathname.startsWith('/sections/'));
 
   useEffect(() => {
     let isCancelled = false;
@@ -49,7 +52,7 @@ export default function App() {
       <GlobalHeader />
       <div className="app-layout">
         {showDictionarySidebar && <Sidebar fields={fieldsData} sections={sectionsData} />}
-        <main className={`main-content ${showDictionarySidebar ? '' : 'main-content--full'}`}>
+        <main className={`main-content ${showDictionarySidebar ? '' : isCohortBuilder ? 'main-content--cohort' : 'main-content--full'}`}>
           <Routes>
             <Route path="/" element={<HomePage fields={fieldsData} sections={sectionsData} />} />
             <Route
@@ -61,6 +64,7 @@ export default function App() {
               element={<FieldPage fields={fieldsData} reportLinks={reportLinks} />}
             />
             <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/cohort-builder" element={<CohortBuilderPage />} />
             <Route path="/about" element={<WorkInProgressPage title="About" />} />
           </Routes>
         </main>

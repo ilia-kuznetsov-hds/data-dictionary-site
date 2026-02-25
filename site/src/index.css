@@ -304,6 +304,19 @@ code {
   margin-left: var(--sidebar-width);
 }
 
+.main-content--cohort {
+  max-width: 1200px;
+}
+
+/* Full-bleed viewport mode — no max-width, no padding, no offset.
+   Used by dashboard-style pages (Cohort Builder) that need edge-to-edge space. */
+.main-content--viewport {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
 /* --- Home Page --- */
 .home-page h1 {
   font-size: 1.75rem;
