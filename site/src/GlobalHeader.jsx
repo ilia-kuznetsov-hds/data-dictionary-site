@@ -22,6 +22,9 @@ export default function GlobalHeader() {
         <NavLink to="/reports" className={({ isActive }) => `global-tab ${isActive ? 'active' : ''}`}>
           Reports
         </NavLink>
+        <NavLink to="/cohort-builder" className={({ isActive }) => `global-tab ${isActive ? 'active' : ''}`}>
+          Cohort Builder
+        </NavLink>
         <NavLink to="/about" className={({ isActive }) => `global-tab ${isActive ? 'active' : ''}`}>
           About
         </NavLink>
