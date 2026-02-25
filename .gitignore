@@ -218,3 +218,9 @@ content/
 site/node_modules/
 
 *.pdf
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
