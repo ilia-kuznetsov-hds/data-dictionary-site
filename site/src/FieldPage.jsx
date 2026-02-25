@@ -27,16 +27,6 @@ export default function FieldPage({ fields, reportLinks }) {
       {/* Title */}
       <div className="field-page-title-row">
         <h1>{field.label}</h1>
-        {linkedPage !== null && (
-          <button
-            className="report-badge"
-            onClick={() => setPanelPage(linkedPage)}
-            title="View in 2023 Annual Report"
-            type="button"
-          >
-            2023 Report
-          </button>
-        )}
       </div>
 
       {/* Metadata summary table */}
@@ -94,6 +84,23 @@ export default function FieldPage({ fields, reportLinks }) {
           </tr>
         </tbody>
       </table>
+
+      {linkedPage !== null && (
+        <section className="related-callout" aria-label="Related reference">
+          <div className="related-callout-row">
+            <button
+              className="related-callout-link"
+              onClick={() => setPanelPage(linkedPage)}
+              title="View this data element in the 2023 report"
+              type="button"
+            >
+              <span className="related-callout-icon" aria-hidden="true">&#128196;</span>
+              <span>View this data element in the 2023 report &rarr;</span>
+            </button>
+          </div>
+          <p className="related-callout-note">Opens the report in a side panel</p>
+        </section>
+      )}
 
       {/* Definition */}
       {field.definition && (

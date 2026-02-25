@@ -449,26 +449,59 @@ code {
   white-space: nowrap;
 }
 
-/* --- Report Badge --- */
-.report-badge {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  padding: 4px 10px;
-  border: 1px solid var(--color-accent);
-  border-radius: 4px;
-  background: transparent;
-  color: var(--color-accent);
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast);
+/* --- Related Callout Row --- */
+.related-callout {
+  margin-top: -20px;
+  margin-bottom: 28px;
+  border-top: 1px solid var(--color-divider-faint);
+  padding-top: 10px;
 }
 
-.report-badge:hover {
-  background: var(--color-accent);
-  color: #fff;
+.related-callout-row {
+  display: flex;
+  align-items: center;
+  min-height: 22px;
+}
+
+.related-callout-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.related-callout-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.related-callout-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.related-callout-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+.related-callout-note {
+  margin-top: 3px;
+  color: var(--color-text-tertiary);
+  font-size: 0.75rem;
+  line-height: 1.35;
 }
 
 /* --- Sliding Report Panel --- */
@@ -545,5 +578,14 @@ code {
 
   .report-panel {
     width: 100vw;
+  }
+
+  .related-callout {
+    margin-top: -16px;
+  }
+
+  .related-callout-link {
+    align-items: flex-start;
+    text-align: left;
   }
 }
