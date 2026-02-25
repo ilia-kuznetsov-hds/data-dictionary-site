@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import HomePage from './HomePage';
 import FieldPage from './FieldPage';
 import GlobalHeader from './GlobalHeader';
 import WorkInProgressPage from './WorkInProgressPage';
+import ReportsPage from './ReportsPage';
 import fieldsData from '../../data/fields.json';
 import sectionsData from '../../data/sections.json';
 
 export default function App() {
   const [reportLinks, setReportLinks] = useState({});
+  const location = useLocation();
+  const showDictionarySidebar =
+    location.pathname === '/' || location.pathname.startsWith('/fields/');
 
   useEffect(() => {
     let isCancelled = false;
@@ -41,15 +45,15 @@ export default function App() {
     <div className="app-shell">
       <GlobalHeader />
       <div className="app-layout">
-        <Sidebar fields={fieldsData} sections={sectionsData} />
-        <main className="main-content">
+        {showDictionarySidebar && <Sidebar fields={fieldsData} sections={sectionsData} />}
+        <main className={`main-content ${showDictionarySidebar ? '' : 'main-content--full'}`}>
           <Routes>
-            <Route path="/" element={<HomePage fields={fieldsData} sections={sectionsData} />} />
+            <Route path="/" element={<HomePage fields={fieldsData} />} />
             <Route
               path="/fields/:fieldId"
               element={<FieldPage fields={fieldsData} reportLinks={reportLinks} />}
             />
-            <Route path="/reports" element={<WorkInProgressPage title="Reports" />} />
+            <Route path="/reports" element={<ReportsPage />} />
             <Route path="/about" element={<WorkInProgressPage title="About" />} />
           </Routes>
         </main>

@@ -17,9 +17,9 @@ export default function Sidebar({ fields, sections }) {
     return map;
   }, [fields]);
 
-  // All sections (main + appendices) in order
+  // Sidebar navigation should only show the main sections.
   const allSections = useMemo(() => {
-    return [...sections.sections, ...sections.appendices];
+    return sections.sections;
   }, [sections]);
 
   // Filtered fields when searching
