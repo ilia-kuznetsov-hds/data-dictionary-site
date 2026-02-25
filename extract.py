@@ -187,6 +187,25 @@ CANONICAL_KEYS = [
 # Regex for coded data-domain lines: number or uppercase code, then label
 DATA_DOMAIN_RE = re.compile(r"^(-?\d+|[A-Z]+)\s+(.+)")
 
+# Footer artifact sometimes appears as:
+#   "ANZNN 2026 Data Dictionary 123"
+#   "123 ANZNN 2026 Data Dictionary"
+#   "256 ANZNN 2026 Data Dictionary APPENDICES"
+FOOTER_ARTIFACT_RE = re.compile(
+    r"\b(?:\d{1,3}\s+)?ANZNN\s+\d{4}\s+Data\s+Dictionary(?:\s+\d{1,3})?(?:\s+APPENDICES)?\b",
+    flags=re.IGNORECASE,
+)
+
+
+def strip_footer_artifacts(text):
+    """Remove recurring page-footer artifacts from extracted text."""
+    if not text:
+        return text
+    cleaned = FOOTER_ARTIFACT_RE.sub(" ", text)
+    cleaned = re.sub(r"\bAPPENDICES\b", " ", cleaned)
+    cleaned = re.sub(r"\s{2,}", " ", cleaned).strip()
+    return cleaned
+
 
 def make_field_id(title):
     """Turn a field title into a URL-friendly slug.
@@ -258,7 +277,7 @@ def parse_key_value_text(raw_text):
             # Save previous key
             if current_key:
                 canonical = KEY_ALIASES.get(current_key, current_key)
-                attrs[canonical] = " ".join(current_lines).strip()
+                attrs[canonical] = strip_footer_artifacts(" ".join(current_lines).strip())
 
             current_key = matched_key
             value_part = stripped[len(matched_key) + 1 :].strip()
@@ -271,7 +290,7 @@ def parse_key_value_text(raw_text):
     # Save last key
     if current_key:
         canonical = KEY_ALIASES.get(current_key, current_key)
-        attrs[canonical] = " ".join(current_lines).strip()
+        attrs[canonical] = strip_footer_artifacts(" ".join(current_lines).strip())
 
     return attrs
 
@@ -415,10 +434,12 @@ def stage2_build_fields(pages):
             # Skip section header lines and the field title itself
             if stripped == title:
                 continue
-            # Skip page footers like "ANZNN 2026 Data Dictionary   123"
-            if re.match(r"^ANZNN\s+\d{4}\s+Data Dictionary\s+\d+$", stripped):
+            # Remove page-footer artifacts, regardless of whether page number
+            # is before or after "ANZNN ... Data Dictionary".
+            stripped = strip_footer_artifacts(stripped)
+            if not stripped:
                 continue
-            clean_lines.append(line)
+            clean_lines.append(stripped)
         combined_text = "\n".join(clean_lines)
 
         # Parse attributes

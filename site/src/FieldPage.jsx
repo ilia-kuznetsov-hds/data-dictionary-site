@@ -43,30 +43,54 @@ export default function FieldPage({ fields, reportLinks }) {
       <table className="metadata-table">
         <tbody>
           {field.anznn_label && (
-            <tr><td className="meta-key">ANZNN Label</td><td>{field.anznn_label}</td></tr>
+            <tr className="metadata-row">
+              <td className="metadata-label">ANZNN Label</td>
+              <td className="metadata-value">{field.anznn_label}</td>
+            </tr>
           )}
           {field.metadata_type && field.metadata_type !== 'DATA ELEMENT' && (
-            <tr><td className="meta-key">Type</td><td>{field.metadata_type}</td></tr>
+            <tr className="metadata-row">
+              <td className="metadata-label">Type</td>
+              <td className="metadata-value">{field.metadata_type}</td>
+            </tr>
           )}
           {field.data_type && (
-            <tr><td className="meta-key">Data Type</td><td>{field.data_type}</td></tr>
+            <tr className="metadata-row">
+              <td className="metadata-label">Data Type</td>
+              <td className="metadata-value">{field.data_type}</td>
+            </tr>
           )}
           {field.format && (
-            <tr><td className="meta-key">Format</td><td>{field.format}</td></tr>
+            <tr className="metadata-row">
+              <td className="metadata-label">Format</td>
+              <td className="metadata-value">{field.format}</td>
+            </tr>
           )}
           {field.field_size && (
-            <tr><td className="meta-key">Field Size</td><td>{field.field_size}</td></tr>
+            <tr className="metadata-row">
+              <td className="metadata-label">Field Size</td>
+              <td className="metadata-value">{field.field_size}</td>
+            </tr>
           )}
           {field.admin_status && (
-            <tr><td className="meta-key">Admin Status</td><td>{field.admin_status}</td></tr>
+            <tr className="metadata-row">
+              <td className="metadata-label">Admin Status</td>
+              <td className="metadata-value">{field.admin_status}</td>
+            </tr>
           )}
           {field.version_number && (
-            <tr><td className="meta-key">Version</td><td>{field.version_number}</td></tr>
+            <tr className="metadata-row">
+              <td className="metadata-label">Version</td>
+              <td className="metadata-value">{field.version_number}</td>
+            </tr>
           )}
-          <tr><td className="meta-key">Section</td><td>{field.section}</td></tr>
-          <tr>
-            <td className="meta-key">Source</td>
-            <td>Page {field.source_page}</td>
+          <tr className="metadata-row">
+            <td className="metadata-label">Section</td>
+            <td className="metadata-value">{field.section}</td>
+          </tr>
+          <tr className="metadata-row">
+            <td className="metadata-label">Source</td>
+            <td className="metadata-value">Page {field.source_page}</td>
           </tr>
         </tbody>
       </table>
@@ -98,7 +122,7 @@ export default function FieldPage({ fields, reportLinks }) {
             <tbody>
               {field.data_domain.map((entry, i) => (
                 <tr key={i}>
-                  <td className="domain-code">{entry.code ?? 'â€”'}</td>
+                  <td className="domain-code">{entry.code && entry.code !== 'â€”' ? entry.code : '—'}</td>
                   <td>{entry.label}</td>
                 </tr>
               ))}
