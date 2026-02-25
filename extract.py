@@ -41,7 +41,8 @@ KNOWN_KEYS = [
     "Guide for use",
     "Related metadata",
     "Source organisation",
-    "Source documents",             # variant seen in some pages
+    "Source documents",             # plural variant
+    "Source document",              # singular variant seen in some pages
     "Comments",
 ]
 
@@ -160,7 +161,7 @@ def stage1_extract_pages(pdf_path):
 KEY_ALIASES = {
     "Datatype": "Data type",
     "Data element type": "Metadata type",
-    "Source documents": "Source organisation",
+    "Source document": "Source documents",   # normalise singular → plural
 }
 
 # Ordered list of canonical keys (used for parsing and display)
@@ -179,6 +180,7 @@ CANONICAL_KEYS = [
     "Guide for use",
     "Related metadata",
     "Source organisation",
+    "Source documents",
     "Comments",
 ]
 
@@ -596,6 +598,13 @@ def render_mdx(record):
         lines.append("## Related Metadata")
         lines.append("")
         lines.append(record["related_metadata"])
+        lines.append("")
+
+    # Source Documents
+    if "source_documents" in record:
+        lines.append("## Source Documents")
+        lines.append("")
+        lines.append(record["source_documents"])
         lines.append("")
 
     return "\n".join(lines)
