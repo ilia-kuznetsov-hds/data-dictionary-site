@@ -4,7 +4,9 @@ import anznnLogo from './assets/anznn-logo-nano-banana.png';
 export default function GlobalHeader() {
   const location = useLocation();
   const isDictionaryActive =
-    location.pathname === '/' || location.pathname.startsWith('/fields/');
+    location.pathname === '/' ||
+    location.pathname.startsWith('/fields/') ||
+    location.pathname.startsWith('/sections/');
 
   return (
     <header className="global-header">

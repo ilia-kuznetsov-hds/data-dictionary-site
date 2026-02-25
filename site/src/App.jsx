@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import HomePage from './HomePage';
 import FieldPage from './FieldPage';
+import SectionGalleryPage from './SectionGalleryPage';
 import GlobalHeader from './GlobalHeader';
 import WorkInProgressPage from './WorkInProgressPage';
 import ReportsPage from './ReportsPage';
@@ -13,7 +14,9 @@ export default function App() {
   const [reportLinks, setReportLinks] = useState({});
   const location = useLocation();
   const showDictionarySidebar =
-    location.pathname === '/' || location.pathname.startsWith('/fields/');
+    location.pathname === '/' ||
+    location.pathname.startsWith('/fields/') ||
+    location.pathname.startsWith('/sections/');
 
   useEffect(() => {
     let isCancelled = false;
@@ -48,7 +51,11 @@ export default function App() {
         {showDictionarySidebar && <Sidebar fields={fieldsData} sections={sectionsData} />}
         <main className={`main-content ${showDictionarySidebar ? '' : 'main-content--full'}`}>
           <Routes>
-            <Route path="/" element={<HomePage fields={fieldsData} />} />
+            <Route path="/" element={<HomePage fields={fieldsData} sections={sectionsData} />} />
+            <Route
+              path="/sections/:sectionId"
+              element={<SectionGalleryPage fields={fieldsData} sections={sectionsData} />}
+            />
             <Route
               path="/fields/:fieldId"
               element={<FieldPage fields={fieldsData} reportLinks={reportLinks} />}

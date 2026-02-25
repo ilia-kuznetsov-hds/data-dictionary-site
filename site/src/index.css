@@ -322,16 +322,17 @@ code {
 
 .home-hero {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
   margin-bottom: 32px;
 }
 
 .home-logo {
-  width: 56px;
-  height: 56px;
+  width: clamp(300px, 52vw, 440px);
+  height: auto;
   object-fit: contain;
-  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .home-page h2 {
@@ -341,59 +342,105 @@ code {
   color: var(--color-text-primary);
 }
 
-.home-table-wrap {
-  border: 1px solid var(--color-divider-faint);
+.directory-gallery-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  margin-top: 10px;
+}
+
+.directory-gallery-grid--fields {
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+}
+
+.directory-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 96px;
+  padding: 12px 14px;
   border-radius: 8px;
-  overflow: hidden;
+  border: 1px solid var(--color-divider-faint);
   background: var(--color-bg-page);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
-.home-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  line-height: 1.35;
-}
-
-.home-table th,
-.home-table td {
-  text-align: left;
-  vertical-align: top;
-  padding: 8px 12px;
-}
-
-.home-table th {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-text-tertiary);
-  letter-spacing: 0.01em;
+.directory-tile:hover {
   background: var(--color-bg-subtle);
-  border-bottom: 1px solid var(--color-divider-faint);
+  border-color: var(--color-divider);
 }
 
-.home-table tr + tr td {
-  border-top: 1px solid var(--color-divider-faint);
+.directory-tile:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
-.home-table td:nth-child(2),
-.home-table td:nth-child(3) {
-  color: var(--color-text-secondary);
-  white-space: nowrap;
-}
-
-.home-table-link {
+.directory-tile-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--color-text-primary);
 }
 
-.home-table-link:hover {
-  color: var(--color-accent);
+.directory-tile-meta {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: var(--color-text-secondary);
+}
+
+.directory-tile-subtitle {
+  margin-top: auto;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.directory-field-shortcode {
+  margin-top: auto;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+  background: var(--color-bg-subtle);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.section-gallery-page h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 10px 0 6px;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.directory-section-meta {
+  color: var(--color-text-secondary);
+  margin-bottom: 18px;
+  font-size: 0.875rem;
+}
+
+.directory-back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  transition: color var(--transition-fast);
+}
+
+.directory-back-link:hover {
+  color: var(--color-text-primary);
   text-decoration: underline;
 }
 
-.home-table-note {
-  margin-top: 10px;
-  color: var(--color-text-tertiary);
-  font-size: 0.8125rem;
+.directory-back-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 
 /* --- Field Page --- */
@@ -791,6 +838,14 @@ code {
     margin-left: 0;
   }
 
+  .directory-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  }
+
+  .directory-gallery-grid--fields {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
+
   .report-panel {
     width: 100vw;
   }
@@ -802,5 +857,12 @@ code {
   .related-callout-link {
     align-items: flex-start;
     text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .directory-gallery-grid,
+  .directory-gallery-grid--fields {
+    grid-template-columns: 1fr;
   }
 }

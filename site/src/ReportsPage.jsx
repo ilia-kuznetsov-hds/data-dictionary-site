@@ -40,6 +40,9 @@ export default function ReportsPage() {
   return (
     <div className="reports-page">
       <h1>ANZNN 2023 Annual Report</h1>
+      <p className="home-subtitle">
+        The 2023 Annual Report covers the neonatal outcomes of high-risk babies born in 2023.
+      </p>
 
       <div className="reports-controls" role="group" aria-label="Report page navigation">
         <button
