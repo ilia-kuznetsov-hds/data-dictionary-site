@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import HomePage from './HomePage';
 import FieldPage from './FieldPage';
+import GlobalHeader from './GlobalHeader';
+import WorkInProgressPage from './WorkInProgressPage';
 import fieldsData from '../../data/fields.json';
 import sectionsData from '../../data/sections.json';
 
@@ -36,17 +38,22 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app-layout">
-      <Sidebar fields={fieldsData} sections={sectionsData} />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<HomePage fields={fieldsData} sections={sectionsData} />} />
-          <Route
-            path="/fields/:fieldId"
-            element={<FieldPage fields={fieldsData} reportLinks={reportLinks} />}
-          />
-        </Routes>
-      </main>
+    <div className="app-shell">
+      <GlobalHeader />
+      <div className="app-layout">
+        <Sidebar fields={fieldsData} sections={sectionsData} />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage fields={fieldsData} sections={sectionsData} />} />
+            <Route
+              path="/fields/:fieldId"
+              element={<FieldPage fields={fieldsData} reportLinks={reportLinks} />}
+            />
+            <Route path="/reports" element={<WorkInProgressPage title="Reports" />} />
+            <Route path="/about" element={<WorkInProgressPage title="About" />} />
+          </Routes>
+        </main>
+      </div>
     </div>
   );
 }

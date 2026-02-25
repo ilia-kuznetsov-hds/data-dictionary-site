@@ -24,6 +24,7 @@
 
   --color-accent:     #2383e2;
 
+  --global-header-height: 52px;
   --sidebar-width:    247px;
   --nav-row-height:   32px;
   --radius-pill:      4px;
@@ -77,9 +78,75 @@ code {
 }
 
 /* --- App Layout --- */
+.app-shell {
+  min-height: 100vh;
+  background: var(--color-bg-page);
+}
+
+.global-header {
+  height: var(--global-header-height);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--color-divider-faint);
+  background: var(--color-bg-page);
+}
+
+.global-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.global-brand:hover {
+  color: var(--color-text-primary);
+}
+
+.global-brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.global-brand-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.global-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.global-tab {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.global-tab:hover {
+  color: var(--color-text-primary);
+}
+
+.global-tab.active {
+  color: var(--color-text-primary);
+}
+
 .app-layout {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--global-header-height));
 }
 
 /* --- Sidebar --- */
@@ -314,6 +381,19 @@ code {
   margin-bottom: 24px;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
+}
+
+/* --- WIP Pages --- */
+.wip-page h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.wip-page p {
+  color: var(--color-text-secondary);
 }
 
 .field-page-title-row {
@@ -567,6 +647,15 @@ code {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
+  .global-header {
+    gap: 18px;
+    padding: 0 12px;
+  }
+
+  .global-tabs .global-tab:not(:first-child) {
+    display: none;
+  }
+
   .sidebar {
     width: 220px;
     min-width: 220px;
