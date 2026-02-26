@@ -47,6 +47,10 @@ This 3-step flow shows how a data element is connected to relevant report pages.
   <img src="./assets/report-UI.png" alt="Linked report page view" width="860" />
 </p>
 
+### Why it matters for data management
+- Improves data discoverability and documentation quality.
+- Strengthens data lineage from dictionary fields to reporting outputs.
+- Supports stakeholder onboarding with clear, usable metadata interfaces.
 
 ### Repo Map
 
