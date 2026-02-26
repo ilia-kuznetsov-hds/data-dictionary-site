@@ -220,6 +220,7 @@ content/
 site/node_modules/
 
 *.pdf
+!site/public/report.pdf
 
 # wrangler files
 .wrangler
