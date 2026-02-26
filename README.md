@@ -30,12 +30,22 @@ The project currently includes two UI surfaces:
 
 ### UI Demonstration
 
-![Data Dictionary UI](./assets/data-dictionary-UI.png)
+This 3-step flow shows how a data element is connected to relevant report pages.
 
-![Report link UI](./assets/report-link.png)
+1. **Step 1 - Open a field in the data dictionary**
+<p align="center">
+  <img src="./assets/data-dictionary-UI.png" alt="Data dictionary field view" width="860" />
+</p>
 
-In the data dictionary UI, when a user clicks the report-link control for a data element, the app connects that element to relevant report pages for quick downstream context.
-![Report slide UI](./assets/report-UI.png)
+2. **Step 2 - Click the report-link control**
+<p align="center">
+  <img src="./assets/report-link.png" alt="Report link control on a data element" width="520" />
+</p>
+
+3. **Step 3 - Review linked report pages**
+<p align="center">
+  <img src="./assets/report-UI.png" alt="Linked report page view" width="860" />
+</p>
 
 
 ### Repo Map
