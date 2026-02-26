@@ -89,7 +89,6 @@ code {
   align-items: center;
   gap: 24px;
   padding: 0 18px;
-  border-bottom: 1px solid var(--color-divider-faint);
   background: var(--color-bg-page);
 }
 

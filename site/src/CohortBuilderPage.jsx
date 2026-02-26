@@ -318,6 +318,13 @@ export default function CohortBuilderPage() {
         </button>
       </div>
 
+      <div className="cb-subtitle-row">
+        <p className="home-subtitle cb-subtitle-text">
+          This is an early prototype of a cohort builder aimed at making cohort definition simpler for researchers.
+          The counts you see are placeholders and will be linked to real data once BI integration is in place.
+        </p>
+      </div>
+
       <AiBanner />
 
       {browsing ? (

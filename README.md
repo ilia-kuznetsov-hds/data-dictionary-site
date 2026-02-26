@@ -27,3 +27,27 @@ Users can search and browse the data dictionary in one place, open field-level d
 
 
 ### Repo Map
+
+```text
+data-dictionary-site/
+├─ extract.py                        # Parse ANZNN 2026 PDF -> structured JSON + MDX
+├─ link_report.py                    # Build field_id -> 2023 report page links
+├─ ANZNN_2026_Data_Dictionary.pdf    # Source data dictionary
+├─ Report ... 2023 ... .pdf          # Source annual report for cross-linking
+├─ content/                          # Generated field docs (.mdx, ~245 files)
+├─ data/
+│  ├─ fields.json                    # Field metadata used by the app
+│  └─ sections.json                  # Section/appendix navigation model
+├─ assets/                           # Logos and static project images
+└─ site/                             # React + Vite frontend
+   ├─ package.json                   # Frontend scripts and dependencies
+   ├─ public/
+   │  └─ report_links.json           # Generated report cross-links
+   └─ src/
+      ├─ App.jsx                     # App shell, routes, sidebar logic
+      ├─ HomePage.jsx / FieldPage.jsx / SectionGalleryPage.jsx / ReportsPage.jsx
+      ├─ CohortBuilderPage.jsx
+      ├─ cohort-builder/             # Cohort builder components + controls/
+      ├─ main.jsx                    # React bootstrap
+      ├─ index.css / cohort-builder.css
+      └─ fieldDirectoryUtils.js
