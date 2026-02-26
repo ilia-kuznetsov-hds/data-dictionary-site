@@ -1,0 +1,94 @@
+{
+  "sections": [
+    {
+      "id": "registration",
+      "label": "Registration"
+    },
+    {
+      "id": "maternal",
+      "label": "Maternal"
+    },
+    {
+      "id": "antenatal",
+      "label": "Antenatal"
+    },
+    {
+      "id": "baby",
+      "label": "Baby"
+    },
+    {
+      "id": "birth",
+      "label": "Birth"
+    },
+    {
+      "id": "hypoxic-ischaemic-encephalopathy-and-screening",
+      "label": "Hypoxic ischaemic encephalopathy and screening"
+    },
+    {
+      "id": "respiratory",
+      "label": "Respiratory"
+    },
+    {
+      "id": "respiratory-support",
+      "label": "Respiratory support"
+    },
+    {
+      "id": "chronic-lung-disease",
+      "label": "Chronic lung disease"
+    },
+    {
+      "id": "cardiac",
+      "label": "Cardiac"
+    },
+    {
+      "id": "necrotising-enterocolitis-and-infection",
+      "label": "Necrotising enterocolitis and infection"
+    },
+    {
+      "id": "surgery",
+      "label": "Surgery"
+    },
+    {
+      "id": "nutrition",
+      "label": "Nutrition"
+    },
+    {
+      "id": "therapeutic-hypothermia",
+      "label": "Therapeutic hypothermia"
+    },
+    {
+      "id": "immunisation-feeding-and-growth",
+      "label": "Immunisation, feeding and growth"
+    },
+    {
+      "id": "ivh-and-cranial-ultrasound",
+      "label": "IVH and cranial ultrasound"
+    },
+    {
+      "id": "eye-examination",
+      "label": "Eye examination"
+    },
+    {
+      "id": "death",
+      "label": "Death"
+    },
+    {
+      "id": "transfer-and-discharge",
+      "label": "Transfer and discharge"
+    }
+  ],
+  "appendices": [
+    {
+      "id": "appendix-a-minor-congenital-anomalies",
+      "label": "Appendix A: Minor congenital anomalies"
+    },
+    {
+      "id": "appendix-b-concepts-used",
+      "label": "Appendix B: Concepts used"
+    },
+    {
+      "id": "appendix-c-icd-10-codes-for-common-surgical-procedures",
+      "label": "Appendix C: ICD-10 codes for common surgical procedures"
+    }
+  ]
+}

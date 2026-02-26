@@ -214,6 +214,8 @@ __marimo__/
 
 data/
 content/
+!site/public/data/
+!site/public/data/*.json
 
 site/node_modules/
 
